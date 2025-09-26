@@ -1,0 +1,11 @@
+{
+  "name": "kurssitiedot",
+  "version": "1.0.0",
+  "description": "osan 1 tehtävien 1.1-1.5 react-koodi tähän hakemistoon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
