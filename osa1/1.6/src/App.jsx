@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
-import './App.css';
-import Buttons from './Buttons.jsx';
+import React, { useState } from "react"; 
+import "./App.css";
+import Buttons from "./Buttons.jsx";
+import Statistics from "./Statistics.jsx";
 
 const App = () => {
-  const [stats, setStats] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const buttonNames = ["Good", "Neutral", "Bad"];
 
   return (
     <div className="app">
       <h1>Give Feedback</h1>
-
-      <Buttons setStats={setStats} />
-
-      <h2>Statistics</h2>
-      <p>Good: {stats.good}</p>  <p>Neutral: {stats.neutral}</p>  <p>Bad: {stats.bad}</p>
+      <Buttons 
+        buttonNames={buttonNames} 
+        setGood={setGood} 
+        setNeutral={setNeutral} 
+        setBad={setBad} 
+      />
     </div>
+  
+
   );
-};
+  };
 
 export default App;

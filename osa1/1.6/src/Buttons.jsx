@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
 
-const Buttons = ({ setStats }) => {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
-
-  // Обновляем статистику в App.jsx
-  useEffect(() => {
-    if (setStats) {
-      setStats({ good, neutral, bad });
-    }
-  }, [good, neutral, bad, setStats]);
-
+const Buttons = ({ buttonNames, setGood, setNeutral, setBad }) => {
   return (
-    <div style={{ marginBottom: 16 }}>
-      <button onClick={() => setGood(g => g + 1)}>Good</button>
-      <button onClick={() => setNeutral(n => n + 1)}>Neutral</button>
-      <button onClick={() => setBad(b => b + 1)}>Bad</button>
+    <div>
+      <button onClick={() => setGood(prev => prev + 1)}>{buttonNames[0]}</button>
+      <button onClick={() => setNeutral(prev => prev + 1)}>{buttonNames[1]}</button>
+      <button onClick={() => setBad(prev => prev + 1)}>{buttonNames[2]}</button>
     </div>
   );
 };
