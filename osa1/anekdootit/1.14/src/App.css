@@ -1,0 +1,32 @@
+.app {
+  padding: 20px;
+  margin-top: -300px;
+  font-family: sans-serif;
+  max-width: 400px;
+}
+
+
+.buttons {
+  margin-bottom: 6px;
+}
+
+.button {
+  margin-right: 5px;
+  padding: 4px 8px; 
+  font-size: 2px;
+}
+
+h1 {
+  font-size: 20px; 
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 16px; /* підзаголовок кароч */
+  margin-bottom: 6px;
+}
+
+p {
+  margin: 4px 0;
+  font-size: 17px;
+}
