@@ -2,10 +2,12 @@ import { useState } from 'react'
 import './Index.css'
 import './App.css'
 
+
 const App = () => {
  
 const [persons, setPersons] = useState([]) 
 const [newName, setNewName] = useState('')
+
 
   const addPerson = (event) => {
     event.preventDefault()
