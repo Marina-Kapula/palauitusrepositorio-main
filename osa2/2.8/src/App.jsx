@@ -30,7 +30,7 @@ const App = () => {
 
     setPersons(updatedPersons)
     setNewName('')
-    setNewNumber('') // очистили поле номера
+    setNewNumber('') 
 
     console.log('names:', updatedPersons.map(p => p.name))
   }
