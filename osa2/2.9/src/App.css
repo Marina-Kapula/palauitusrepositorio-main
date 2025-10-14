@@ -1,4 +1,4 @@
-/* Сделаем все строки как flex для ровного выравнивания */
+
 .filter-row,
 .form-row-name,
 .form-row-number-add {
@@ -7,15 +7,15 @@
   margin-bottom: 8px;
 }
 
-/* Задаем фиксированную ширину для label, чтобы все input выровнялись */
+
 .filter-row span,
 .form-row-name span,
 .form-row-number-add span {
-  width: 120px; /* подбираем под нужную длину, чтобы колонки ровные */
+  width: 120px; 
   display: inline-block;
 }
 
-/* Расстояние между input и кнопкой */
+
 .form-row-number-add button {
   margin-left: 10px;
 }

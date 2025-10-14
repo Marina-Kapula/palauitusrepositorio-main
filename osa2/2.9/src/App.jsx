@@ -82,7 +82,7 @@ const App = () => {
 )}
 
 
-      <div>: {newName}</div> {/* для перевірки */}
+      <div>: {newName}</div> {/* для перевірки */}  
     </div>
   )
 }
