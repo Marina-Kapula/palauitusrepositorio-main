@@ -60,8 +60,19 @@ form input {
 }
 
 form button {
-  padding: 4px 4px;        /* уменьшает размер кнопки */
-  font-size: 12px;          /* уменьшает текст */
-  border-radius: 2px;       /* немного скругляем */
+  padding: 4px 4px;        
+  font-size: 12px;          
+  border-radius: 2px;       
 }
 
+form div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+form div span {
+  display: inline-block;
+  width: 60px; 
+  text-align: right;
+}

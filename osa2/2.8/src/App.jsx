@@ -8,6 +8,10 @@ const App = () => {
   const [newName, setNewName] = useState('')
    const [newNumber, setNewNumber] = useState('')
 
+
+   
+
+    // Функція шоб нову людину добавити
   const addPerson = (event) => {
     event.preventDefault()
 
@@ -18,12 +22,15 @@ const App = () => {
     }
     // === Кінець перевірки ===
 
-    const personObject = { name: newName }
+    const personObject = {
+      name: newName,
+      number: newNumber
+    }
     const updatedPersons = persons.concat(personObject)
 
     setPersons(updatedPersons)
     setNewName('')
-    number: newNumber
+    setNewNumber('') // очистили поле номера
 
     console.log('names:', updatedPersons.map(p => p.name))
   }
@@ -32,19 +39,36 @@ const App = () => {
     setNewName(event.target.value)
   }
 
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
+  }
+
+
+
+
   return (
     <div>
       <h2>Phonebook</h2>
       <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-          <button type="submit">Add</button>
-        </div>
+<div>
+  <span>name:</span>
+  <input value={newName} onChange={handleNameChange} />
+</div>
+<div>
+  <span>number:</span>
+  <input value={newNumber} onChange={handleNumberChange} />
+</div>
+<div>
+  <button type="submit">Add</button>
+</div>
+
       </form>
 
       <h2>Numbers</h2>
       {persons.map(person => 
-        <p key={person.name}>{person.name}</p>
+        <p key={person.name}>
+          {person.name} {person.number && <> — {person.number}</>}
+        </p>
       )}
 
       <div>: {newName}</div> {/* для перевірки */}
