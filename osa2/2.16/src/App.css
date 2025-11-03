@@ -1,42 +1,39 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.filter-row,
+.form-row-name,
+.form-row-number-add {
+  display: flex;
+  align-items: center;
+  gap: 7px;              /* одинаковый промежуток между элементами */
+  margin-bottom: 4px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.filter-row span,
+.form-row-name span,
+.form-row-number-add span {
+  width: 108px;           /* одинаковая ширина для всех подписей */
+  text-align: right;      /* подписи выровнены справа */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.filter-row input,
+.form-row-name input,
+.form-row-number-add input {
+  flex: 1;
+  max-width: 200px;       /* одинаковая ширина полей */
+  padding: 3.5px 8px;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.form-row-number-add button {
+  padding: 3.5px 5px;
+  margin-left: 8px;
 }
 
-.card {
-  padding: 2em;
-}
 
-.read-the-docs {
-  color: #888;
+.notification {
+  color: green;
+  background-color: #e0ffe0;
+  border: 1px solid green;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }

@@ -3,22 +3,22 @@
 .form-row-number-add {
   display: flex;
   align-items: center;
-  gap: 7px;              /* одинаковый промежуток между элементами */
+  gap: 7px;              
   margin-bottom: 4px;
 }
 
 .filter-row span,
 .form-row-name span,
 .form-row-number-add span {
-  width: 108px;           /* одинаковая ширина для всех подписей */
-  text-align: right;      /* подписи выровнены справа */
+  width: 108px;           
+  text-align: right;      
 }
 
 .filter-row input,
 .form-row-name input,
 .form-row-number-add input {
   flex: 1;
-  max-width: 200px;       /* одинаковая ширина полей */
+  max-width: 200px;       
   padding: 3.5px 8px;
   box-sizing: border-box;
 }
