@@ -1,34 +1,130 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import './Index.css'
 import './App.css'
+import personService from './services/phonebook'
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const Filter = ({ filter, handleFilterChange }) => (
+  <div className="filter-row">  
+    <span>Filter shown with:</span>
+    <input value={filter} onChange={handleFilterChange} />
+  </div>
+)
+
+const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNumberChange }) => (
+  <form onSubmit={addPerson}>
+    <div className="form-row-name">  
+      <span>name:</span>
+      <input value={newName} onChange={handleNameChange} />
+    </div>
+    <div className="form-row-number-add">  
+      <span>number:</span>
+      <input value={newNumber} onChange={handleNumberChange} />
+      <button type="submit">Add</button>
+    </div>
+  </form>
+)
+
+const Person = ({ person, handleDelete }) => (
+  <p>
+    {person.name} {person.number && `— ${person.number}`}
+    <button onClick={() => handleDelete(person.id, person.name)}>delete</button>
+  </p>
+)
+
+const Persons = ({ persons, handleDelete }) => (
+  <div>
+    {persons.map(person => (
+      <Person key={person.id} person={person} handleDelete={handleDelete} />
+    ))}
+  </div>
+)
+
+const App = () => {
+  const [persons, setPersons] = useState([])
+  const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
+  const [filter, setFilter] = useState('')
+
+  useEffect(() => {
+    personService.getAll()
+      .then(initialPersons => setPersons(initialPersons))
+      .catch(error => console.error('Error fetching data', error))
+  }, [])
+
+  const addPerson = async (event) => {
+    event.preventDefault()
+    if (!newName.trim() || !newNumber.trim()) return
+
+    const existingPerson = persons.find(p => p.name.toLowerCase() === newName.toLowerCase())
+
+    if (existingPerson) {
+      if (window.confirm(`${newName} is already added. Replace the old number with a new one?`)) {
+        const updatedPerson = { ...existingPerson, number: newNumber }
+        try {
+          const returnedPerson = await personService.update(existingPerson.id, updatedPerson)
+          setPersons(persons.map(p => p.id !== existingPerson.id ? p : returnedPerson))
+          setNewName('')
+          setNewNumber('')
+        } catch (error) {
+          alert(`Information of ${existingPerson.name} has already been removed from server`)
+          setPersons(persons.filter(p => p.id !== existingPerson.id))
+        }
+      }
+      return
+    }
+
+    const personObject = { name: newName, number: newNumber }
+    try {
+      const returnedPerson = await personService.create(personObject)
+      setPersons(persons.concat(returnedPerson))
+      setNewName('')
+      setNewNumber('')
+    } catch (error) {
+      console.error('Error saving person', error)
+    }
+  }
+
+  const handleDelete = (id, name) => {
+    if (window.confirm(`Delete ${name}?`)) {
+      
+      const stringId = id.toString()
+
+      personService
+        .remove(id)
+        .then(() => {
+          setPersons(prev => prev.filter(p => p.id.toString() !== stringId))
+        })
+        .catch(() => {
+          alert(`Information of ${name} has already been removed from server`)
+          setPersons(prev => prev.filter(p => p.id.toString() !== stringId))
+        })
+    }
+  }
+
+  const handleNameChange = (event) => setNewName(event.target.value)
+  const handleNumberChange = (event) => setNewNumber(event.target.value)
+  const handleFilterChange = (event) => setFilter(event.target.value)
+
+  const filteredPersons = persons.filter(person =>
+    person.name.toLowerCase().includes(filter.toLowerCase())
+  )
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h2>Phonebook</h2>
+      <Filter filter={filter} handleFilterChange={handleFilterChange} />
+      <h3>Add a new</h3>
+      <PersonForm
+        addPerson={addPerson}
+        newName={newName}
+        handleNameChange={handleNameChange}
+        newNumber={newNumber}
+        handleNumberChange={handleNumberChange}
+      />
+      <h2>Numbers</h2>
+      <Persons persons={filteredPersons} handleDelete={handleDelete} />
+    </div>
   )
 }
 
