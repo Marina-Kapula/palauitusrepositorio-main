@@ -1,11 +1,6 @@
 {
   "persons": [
     {
-      "id": "0063",
-      "name": "3576",
-      "number": "357"
-    },
-    {
       "id": "f770",
       "name": "r4ty6e56",
       "number": "ery6e56y"
@@ -14,11 +9,6 @@
       "id": "1630",
       "name": "уі5е6",
       "number": "цу56ен"
-    },
-    {
-      "id": "f6d7",
-      "name": "redtywr",
-      "number": "tywrtey"
     },
     {
       "id": "efc3",
@@ -54,6 +44,21 @@
       "id": "53b4",
       "name": "Maryna Kapula",
       "number": "0501908715"
+    },
+    {
+      "id": "09ed",
+      "name": "ц47",
+      "number": "34567"
+    },
+    {
+      "id": "62c8",
+      "name": "4567",
+      "number": "356"
+    },
+    {
+      "id": "b487",
+      "name": "4у567",
+      "number": "3567"
     }
   ]
 }
