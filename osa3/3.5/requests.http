@@ -1,0 +1,17 @@
+### Посмотреть все контакты
+GET http://localhost:3001/api/persons
+
+### Посмотреть контакт с id = 1
+GET http://localhost:3001/api/persons/1
+
+### Добавить новый контакт
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Kolia Petrov",
+  "number": "555-9999"
+}
+
+### Удалить контакт с id = 2
+DELETE http://localhost:3001/api/persons/2
