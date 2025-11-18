@@ -12,10 +12,12 @@ let persons = [
   { id: 3, name: "Dan Abramov", number: "12-43-234345" },
 ]
 
+// маршрут
 app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
 
+// запуск 
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
